@@ -1,25 +1,24 @@
+from pathlib import Path
+from typing import Union
+
 import pandas as pd
-import csv
 
 
-def read_csv(file_csv):
+def read_csv(file_csv: Union[Path | str]) -> list[dict]:
     """функция для считывания финансовых операций из CSV."""
-    readed_csv = []
     try:
         df = pd.read_csv(file_csv)
-        return df
-        # with open(file_csv) as file:
-        #     reader = csv.DictReader(file)
-        #     for row in reader:
-        #         readed_csv.append(row)
-        #     print(type(readed_csv))
+        return df.to_dict(orient="records")
     except Exception as e:
         print(e)
-    # finally:
-    #     return readed_csv
+        return []
 
 
-def read_xl(file_xl):
+def read_xl(file_xl: Union[Path | str]) -> list[dict]:
     """функция для считывания финансовых операций из Excel."""
-    excel_data = pd.read_excel(file_xl)
-    return excel_data
+    try:
+        excel_data = pd.read_excel(file_xl)
+        return excel_data.to_dict(orient="records")
+    except Exception as e:
+        print(e)
+        return []
