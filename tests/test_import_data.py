@@ -46,6 +46,7 @@ def test_read_xl_success(mock_read_excel):
 
 @patch("pandas.read_excel")
 def test_read_xl_exception(mock_read_excel):
+    """test read xl exception"""
     mock_read_excel.side_effect = Exception("file error")
     result = read_xl("some.xlsx")
     mock_read_excel.assert_called_once_with("some.xlsx")
