@@ -12,7 +12,7 @@ def test_read_csv_success(mock_read_csv):
 
     result = read_csv("some.csv")
 
-    mock_read_csv.assert_called_once_with("some.csv")
+    mock_read_csv.assert_called_once_with("some.csv", delimiter=";")
     assert result == [{"a": 1, "b": 2}, {"a": 3, "b": 4}]
 
 
@@ -21,7 +21,7 @@ def test_read_csv_exception(mock_read_csv):
     """test read csv exception"""
     mock_read_csv.side_effect = Exception("file error")
     result = read_csv("some.csv")
-    mock_read_csv.assert_called_once_with("some.csv")
+    mock_read_csv.assert_called_once_with("some.csv", delimiter=";")
     assert result == []
 
 
