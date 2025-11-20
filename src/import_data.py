@@ -7,7 +7,8 @@ import pandas as pd
 def read_csv(file_csv: Union[Path | str]) -> list[dict]:
     """функция для считывания финансовых операций из CSV."""
     try:
-        df = pd.read_csv(file_csv)
+        df = pd.read_csv(file_csv, delimiter=';')
+        # grouped_df = df.groupby('id').agg({})
         return df.to_dict(orient="records")
     except Exception as e:
         print(e)
